@@ -1,5 +1,8 @@
+// 変数の定義
 let scene;
 let box; //mesh
+let light;
+let ambient;
 let camera;
 let renderer;
 let width = 500;
@@ -20,6 +23,14 @@ function init() {
   );
   box.position.set(0, 0, 0);
   scene.add(box);
+
+  // light
+  light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(0, 100, 30);
+  scene.add(light);
+
+  ambient = new THREE.AmbientLight(0x404040);
+  scene.add(ambient);
 
   //camera
   camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
