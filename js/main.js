@@ -10,7 +10,7 @@ let lightHelper;
 let renderer;
 let width = 500;
 let height = 250;
-
+let theta = 0;
 
 function init() {
   'use strict';
@@ -55,7 +55,17 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   document.getElementById('stage').appendChild(renderer.domElement);
 
-  renderer.render(scene, camera);
+  function render() {
+    requestAnimationFrame(render);
+
+    theta += 0.1;
+    camera.position.x = Math.cos(THREE.Math.degToRad(theta)) * 300;
+    camera.position.z = Math.sin(THREE.Math.degToRad(theta)) * 300;
+    camera.lookAt(scene.position);
+    // box.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  render();
 };
 
 window.onload = init;
