@@ -20,6 +20,11 @@ function init() {
   // mesh 物体
   // - geometry 形状
   // - material 材質
+  // 操作
+  // - position
+  // - scale
+  // - rotation
+
   box = new THREE.Mesh(
     new THREE.BoxGeometry(50, 50, 50),
     new THREE.MeshLambertMaterial({ 
