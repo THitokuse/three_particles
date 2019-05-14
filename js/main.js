@@ -11,6 +11,7 @@ let renderer;
 let width = 500;
 let height = 250;
 let theta = 0;
+let controls;
 
 function init() {
   'use strict';
@@ -55,6 +56,9 @@ function init() {
   lightHelper = new THREE.DirectionalLightHelper(light, 20);
   scene.add(lightHelper);
 
+  // controls
+  controls = new THREE.OrbitControls(camera);
+
   // renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(width, height);
@@ -69,7 +73,8 @@ function init() {
     camera.position.x = Math.cos(THREE.Math.degToRad(theta)) * 300;
     camera.position.z = Math.sin(THREE.Math.degToRad(theta)) * 300;
     camera.lookAt(scene.position);
-    // box.rotation.y += 0.01;
+    
+    controls.update();
     renderer.render(scene, camera);
   }
   render();
