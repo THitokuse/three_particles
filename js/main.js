@@ -1,6 +1,7 @@
 // 変数の定義
 let scene;
 let box; //mesh
+let plane;
 let light;
 let ambient;
 let camera;
@@ -35,6 +36,15 @@ function init() {
   );
   box.position.set(0, 0, 0);
   scene.add(box);
+
+  // plane
+  plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(200, 200),
+    new THREE.MeshLambertMaterial({ color: 0x0096d6, side: THREE.DoubleSide})
+  );
+  plane.position.set(0, -50, 0);
+  plane.rotation.x = 90 * Math.PI / 180;
+  scene.add(plane);
 
   // light
   light = new THREE.DirectionalLight(0xffffff, 1);
@@ -77,6 +87,7 @@ function init() {
   shadowHelper = new THREE.CameraHelper(light.shadow.camera);
   scene.add(shadowHelper);
   box.castShadow = true;
+  plane.receiveShadow = true;
 
 
   function render() {
