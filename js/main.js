@@ -12,6 +12,7 @@ let width = 500;
 let height = 250;
 let theta = 0;
 let controls;
+let shadowHelper;
 
 function init() {
   'use strict';
@@ -65,6 +66,18 @@ function init() {
   renderer.setClearColor(0xefefef);
   renderer.setPixelRatio(window.devicePixelRatio);
   document.getElementById('stage').appendChild(renderer.domElement);
+
+  // shadow
+  renderer.shadowMap.enabled = true;
+  light.castShadow = true;
+  light.shadow.camera.left = -200;
+  light.shadow.camera.right = 200;
+  light.shadow.camera.top = 200;
+  light.shadow.camera.bottom = -200;
+  shadowHelper = new THREE.CameraHelper(light.shadow.camera);
+  scene.add(shadowHelper);
+  box.castShadow = true;
+
 
   function render() {
     requestAnimationFrame(render);
